@@ -4,6 +4,7 @@ class AppStrings {
   // Weather UI
   static const String checkWeather = 'Check the weather in your area!';
   static const String wind = 'Wind';
+  static const String weather = 'Weather';
   static const String humidity = 'Humidity';
   static const String feelsLike = 'Feels Like';
   static const String kmh = 'km/h';

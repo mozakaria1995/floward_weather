@@ -1,6 +1,7 @@
 import 'package:floward_weather/core/bloc/connectivity/connectivity_bloc.dart';
 import 'package:floward_weather/core/bloc/connectivity/connectivity_event.dart';
 import 'package:floward_weather/core/bloc/connectivity/connectivity_state.dart';
+import 'package:floward_weather/core/utils/strings.dart';
 import 'package:floward_weather/core/widgets/connectivity_banner.dart';
 import 'package:floward_weather/features/profile/presentation/pages/profile_page.dart';
 import 'package:floward_weather/features/weather/presentation/pages/weather_page.dart';
@@ -49,11 +50,11 @@ class MainPage extends StatelessWidget {
                 items: const [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.cloud),
-                    label: 'Weather',
+                    label: AppStrings.weather,
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person),
-                    label: 'Profile',
+                    label: AppStrings.profile,
                   ),
                 ],
               ),
