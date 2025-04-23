@@ -1,5 +1,6 @@
 import 'package:floward_weather/config/flavor_config.dart';
 import 'package:floward_weather/core/network/dio_helper.dart';
+import 'package:floward_weather/core/utils/theme.dart';
 import 'package:floward_weather/features/weather/presentation/bloc/weather_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,10 +42,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Floward Weather',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          useMaterial3: true,
-        ),
+        theme: AppTheme.themeData,
         home: const MainPage(),
       ),
     );

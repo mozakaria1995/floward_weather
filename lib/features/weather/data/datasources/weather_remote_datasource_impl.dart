@@ -25,7 +25,6 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
         throw Exception('Failed to load weather data');
       }
     } catch (e) {
-      print(e);
       throw Exception('Failed to load weather data');
     }
   }

@@ -144,7 +144,7 @@ class WeatherContent extends StatelessWidget {
       margin: AppStyles.cardMargin,
       padding: AppStyles.cardPadding,
       decoration: BoxDecoration(
-        color: AppStyles.textColor.withOpacity(0.2),
+        color: AppStyles.textColor.withAlpha(51),
         borderRadius: BorderRadius.circular(AppStyles.cardBorderRadius),
       ),
       child: Row(
