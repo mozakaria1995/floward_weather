@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:floward_weather/features/weather/domain/entities/weather.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../domain/entities/weather.dart';
 import '../models/weather_model.dart';
 import 'weather_local_datasource.dart';
 

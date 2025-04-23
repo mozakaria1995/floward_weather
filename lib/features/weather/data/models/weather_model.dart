@@ -1,6 +1,5 @@
+import 'package:floward_weather/features/weather/domain/entities/weather.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../domain/entities/weather.dart';
 
 part 'weather_model.g.dart';
 
@@ -31,17 +30,5 @@ class WeatherModel extends Weather {
     );
   }
 
-  @override
-  Map<String, dynamic> toJson() => {
-    'main': {
-      'temp': temperature,
-      'feels_like': feelsLike,
-      'temp_min': low,
-      'temp_max': high,
-    },
-    'weather': [
-      {'description': description, 'icon': icon},
-    ],
-    'name': cityName,
-  };
+  Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
 }

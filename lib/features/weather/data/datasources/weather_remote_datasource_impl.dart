@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:floward_weather/features/weather/domain/entities/weather.dart';
 import 'package:http/http.dart' as http;
 
 import '../../core/utils/constants.dart';
-import '../../domain/entities/weather.dart';
 import '../models/weather_model.dart';
 import 'weather_remote_datasource.dart';
 

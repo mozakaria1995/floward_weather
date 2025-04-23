@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:floward_weather/features/weather/domain/entities/weather.dart';
+import 'package:floward_weather/features/weather/domain/repositories/weather_repository.dart';
 
 import '../../core/error/failures.dart';
 import '../../core/network/network_info.dart';
-import '../../domain/entities/weather.dart';
-import '../../domain/repositories/weather_repository.dart';
 import '../datasources/weather_local_datasource.dart';
 import '../datasources/weather_remote_datasource.dart';
 
