@@ -1,5 +1,5 @@
-import 'package:floward_weather/features/weather/domain/entities/weather.dart';
+import 'package:floward_weather/features/weather/data/models/weather_model.dart';
 
 abstract class WeatherRemoteDataSource {
-  Future<Weather> getCurrentWeather(String cityName);
+  Future<WeatherModel> getCurrentWeather();
 }

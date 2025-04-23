@@ -8,23 +8,31 @@ abstract class WeatherState extends Equatable {
   List<Object> get props => [];
 }
 
-class WeatherEmpty extends WeatherState {}
+class WeatherInitial extends WeatherState {
+  const WeatherInitial();
+}
 
-class WeatherLoading extends WeatherState {}
+class WeatherLoading extends WeatherState {
+  const WeatherLoading();
+}
 
 class WeatherLoaded extends WeatherState {
   final Weather weather;
+  final String animationPath;
 
-  const WeatherLoaded(this.weather);
+  const WeatherLoaded({
+    required this.weather,
+    required this.animationPath,
+  });
 
   @override
-  List<Object> get props => [weather];
+  List<Object> get props => [weather, animationPath];
 }
 
 class WeatherError extends WeatherState {
   final String message;
 
-  const WeatherError(this.message);
+  const WeatherError({required this.message});
 
   @override
   List<Object> get props => [message];

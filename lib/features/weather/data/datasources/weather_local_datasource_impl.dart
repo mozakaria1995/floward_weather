@@ -8,13 +8,13 @@ import 'weather_local_datasource.dart';
 
 class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
   final SharedPreferences sharedPreferences;
-  static const String CACHED_WEATHER = 'CACHED_WEATHER';
+  static const String cachedWeather = 'CACHED_WEATHER';
 
   WeatherLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<Weather> getLastWeather() async {
-    final jsonString = sharedPreferences.getString(CACHED_WEATHER);
+    final jsonString = sharedPreferences.getString(cachedWeather);
     if (jsonString != null) {
       return WeatherModel.fromJson(json.decode(jsonString));
     } else {
@@ -26,7 +26,7 @@ class WeatherLocalDataSourceImpl implements WeatherLocalDataSource {
   Future<void> cacheWeather(Weather weather) async {
     if (weather is WeatherModel) {
       await sharedPreferences.setString(
-        CACHED_WEATHER,
+        cachedWeather,
         json.encode(weather.toJson()),
       );
     }

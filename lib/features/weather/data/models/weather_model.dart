@@ -1,34 +1,49 @@
 import 'package:floward_weather/features/weather/domain/entities/weather.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'weather_model.g.dart';
-
-@JsonSerializable()
 class WeatherModel extends Weather {
   const WeatherModel({
-    required super.temperature,
-    required super.feelsLike,
-    required super.low,
-    required super.high,
-    required super.description,
-    required super.icon,
-    required super.cityName,
-  });
+    required String cityName,
+    required double temperature,
+    required double feelsLike,
+    required int humidity,
+    required double windSpeed,
+    required String condition,
+  }) : super(
+          cityName: cityName,
+          temperature: temperature,
+          feelsLike: feelsLike,
+          humidity: humidity,
+          windSpeed: windSpeed,
+          condition: condition,
+        );
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
-    final weather = json['weather'][0];
-    final main = json['main'];
-
     return WeatherModel(
-      temperature: (main['temp'] as num).toDouble(),
-      feelsLike: (main['feels_like'] as num).toDouble(),
-      low: (main['temp_min'] as num).toDouble(),
-      high: (main['temp_max'] as num).toDouble(),
-      description: weather['description'],
-      icon: weather['icon'],
       cityName: json['name'],
+      temperature: (json['main']['temp'] as num).toDouble(),
+      feelsLike: (json['main']['feels_like'] as num).toDouble(),
+      humidity: json['main']['humidity'],
+      windSpeed: (json['wind']['speed'] as num).toDouble(),
+      condition: json['weather'][0]['main'],
     );
   }
 
-  Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
+  Map<String, dynamic> toJson() {
+    return {
+      'name': cityName,
+      'main': {
+        'temp': temperature,
+        'feels_like': feelsLike,
+        'humidity': humidity,
+      },
+      'wind': {
+        'speed': windSpeed,
+      },
+      'weather': [
+        {
+          'main': condition,
+        }
+      ],
+    };
+  }
 }

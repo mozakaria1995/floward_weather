@@ -1,15 +1,22 @@
 import 'package:dartz/dartz.dart';
-
-import '../../core/error/failures.dart';
-import '../entities/weather.dart';
-import '../repositories/weather_repository.dart';
+import 'package:equatable/equatable.dart';
+import 'package:floward_weather/core/error/failures.dart';
+import 'package:floward_weather/features/weather/domain/entities/weather.dart';
+import 'package:floward_weather/features/weather/domain/repositories/weather_repository.dart';
 
 class GetWeather {
   final WeatherRepository repository;
 
   GetWeather(this.repository);
 
-  Future<Either<Failure, Weather>> execute(String cityName) async {
-    return await repository.getCurrentWeather(cityName);
+  Future<Either<Failure, Weather>> call(NoParams params) async {
+    return await repository.getCurrentWeather();
   }
+}
+
+class NoParams extends Equatable {
+  const NoParams();
+
+  @override
+  List<Object> get props => [];
 }

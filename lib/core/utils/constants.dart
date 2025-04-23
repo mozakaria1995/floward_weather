@@ -1,5 +1,7 @@
-class ApiConstants {
-  static const String baseUrl = 'https://api.openweathermap.org/data/2.5';
-  static const String apiKey =
-      'YOUR_API_KEY'; // This should be moved to environment variables
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+class Constants {
+  static const cityName = 'Cairo,EG';
+  static String get apiKey => dotenv.env['API_KEY'] ?? '';
+  static const metric = 'metric';
 }
