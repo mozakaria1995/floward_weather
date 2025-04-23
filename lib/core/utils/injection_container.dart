@@ -1,4 +1,11 @@
+import 'package:floward_weather/core/bloc/connectivity/connectivity_bloc.dart';
 import 'package:floward_weather/core/network/network_info.dart';
+import 'package:floward_weather/features/profile/data/datasources/profile_datasource.dart';
+import 'package:floward_weather/features/profile/data/datasources/profile_datasource_impl.dart';
+import 'package:floward_weather/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:floward_weather/features/profile/domain/repositories/profile_repository.dart';
+import 'package:floward_weather/features/profile/domain/usecases/get_profile.dart';
+import 'package:floward_weather/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:floward_weather/features/weather/data/datasources/weather_local_datasource.dart';
 import 'package:floward_weather/features/weather/data/datasources/weather_local_datasource_impl.dart';
 import 'package:floward_weather/features/weather/data/datasources/weather_remote_datasource.dart';
@@ -39,8 +46,31 @@ Future<void> init() async {
     () => WeatherLocalDataSourceImpl(sharedPreferences: sl()),
   );
 
+  // Features - Profile
+  // Bloc
+  sl.registerFactory(() => ProfileBloc(getProfile: sl()));
+
+  // Use cases
+  sl.registerLazySingleton(() => GetProfile(sl()));
+
+  // Repository
+  sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(
+      dataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<ProfileDataSource>(
+    () => ProfileDataSourceImpl(),
+  );
+
   // Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+
+  // Connectivity Bloc
+  sl.registerFactory(() => ConnectivityBloc(networkInfo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

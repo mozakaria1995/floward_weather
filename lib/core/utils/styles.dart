@@ -11,6 +11,8 @@ class AppStyles {
   static const double smallIconSize = 24.0;
   static const double largeIconSize = 60.0;
   static const double weatherIconSize = 70.0;
+  static const double profileAvatarSize = 120.0;
+  static const double profileAvatarRadius = 60.0;
 
   // Text sizes
   static const double smallTextSize = 14.0;
@@ -18,6 +20,7 @@ class AppStyles {
   static const double largeTextSize = 22.0;
   static const double extraLargeTextSize = 32.0;
   static const double temperatureTextSize = 80.0;
+  static const double profileNameTextSize = 28.0;
 
   // Border radius
   static const double cardBorderRadius = 20.0;
@@ -25,11 +28,20 @@ class AppStyles {
   // Padding
   static const EdgeInsets cardPadding = EdgeInsets.all(15.0);
   static const EdgeInsets cardMargin = EdgeInsets.symmetric(horizontal: 20.0);
+  static const EdgeInsets profileHeaderPadding =
+      EdgeInsets.symmetric(vertical: 20.0);
+  static const EdgeInsets profileCardPadding = EdgeInsets.all(20.0);
+  static const EdgeInsets profileInfoItemPadding =
+      EdgeInsets.only(bottom: 15.0);
 
   // Colors
   static const Color errorColor = Colors.red;
   static const Color textColor = Colors.white;
   static const Color secondaryTextColor = Colors.white70;
+
+  // Alpha values
+  static const int semiTransparentBackgroundAlpha = 51; // ~0.2 opacity
+  static const int avatarBackgroundAlpha = 77; // ~0.3 opacity
 
   // Text styles
   static const TextStyle cityNameStyle = TextStyle(
@@ -62,10 +74,33 @@ class AppStyles {
   static const TextStyle infoValueStyle = TextStyle(
     color: textColor,
     fontSize: mediumTextSize,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
   );
 
   static const TextStyle errorMessageStyle = TextStyle(
     fontSize: mediumTextSize,
+  );
+
+  static const TextStyle profileNameStyle = TextStyle(
+    fontSize: profileNameTextSize,
+    fontWeight: FontWeight.bold,
+    color: textColor,
+  );
+
+  static const TextStyle profileSectionTitleStyle = TextStyle(
+    fontSize: largeTextSize,
+    fontWeight: FontWeight.bold,
+    color: textColor,
+  );
+
+  static const TextStyle profileInfoTitleStyle = TextStyle(
+    fontSize: smallTextSize,
+    color: secondaryTextColor,
+  );
+
+  static const TextStyle profileInfoValueStyle = TextStyle(
+    fontSize: mediumTextSize,
+    color: textColor,
+    fontWeight: FontWeight.w500,
   );
 }

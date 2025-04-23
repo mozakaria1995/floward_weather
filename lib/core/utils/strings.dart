@@ -12,6 +12,13 @@ class AppStrings {
   static const String celsius = '°C';
   static const String dateFormat = 'EEEE, d MMMM';
 
+  // Profile UI
+  static const String profile = 'Profile';
+  static const String personalInformation = 'Personal Information';
+  static const String location = 'Location';
+  static const String memberSince = 'Member Since';
+  static const String email = 'Email';
+
   // Weather conditions
   static const String cloud = 'clouds';
   static const String clear = 'clear';
@@ -20,4 +27,8 @@ class AppStrings {
   static const String thunder = 'thunder';
   static const String mist = 'mist';
   static const String fog = 'fog';
+
+  // Connectivity
+  static const String noInternetConnection = 'No internet connection';
+  static const String retry = 'RETRY';
 }

@@ -1,6 +1,10 @@
 import 'package:floward_weather/config/flavor_config.dart';
+import 'package:floward_weather/core/bloc/connectivity/connectivity_bloc.dart';
+import 'package:floward_weather/core/bloc/connectivity/connectivity_event.dart';
 import 'package:floward_weather/core/network/dio_helper.dart';
 import 'package:floward_weather/core/utils/theme.dart';
+import 'package:floward_weather/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:floward_weather/features/profile/presentation/bloc/profile_event.dart';
 import 'package:floward_weather/features/weather/presentation/bloc/weather_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,6 +42,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               WeatherBloc(getWeather: di.sl())..add(const GetWeatherEvent()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ProfileBloc(getProfile: di.sl())..add(const GetProfileEvent()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              di.sl<ConnectivityBloc>()..add(CheckConnectivity()),
         ),
       ],
       child: MaterialApp(
