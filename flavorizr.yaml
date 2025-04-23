@@ -1,0 +1,15 @@
+flavors:
+  dev:
+    app:
+      name: "Floward Weather Dev"
+    android:
+      applicationId: "com.example.floward_weather.dev"
+    ios:
+      bundleId: "com.example.flowardWeather.dev"
+  prod:
+    app:
+      name: "Floward Weather"
+    android:
+      applicationId: "com.example.floward_weather"
+    ios:
+      bundleId: "com.example.flowardWeather" 
