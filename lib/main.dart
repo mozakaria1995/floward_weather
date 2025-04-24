@@ -1,16 +1,12 @@
-import 'dart:developer' as developer;
-
 import 'package:floward_weather/config/flavor_config.dart';
 import 'package:floward_weather/core/network/bloc/connectivity/connectivity_bloc.dart';
 import 'package:floward_weather/core/network/bloc/connectivity/connectivity_event.dart';
 import 'package:floward_weather/core/network/connectivity_manager.dart';
-import 'package:floward_weather/core/network/dio_helper.dart';
 import 'package:floward_weather/core/utils/theme.dart';
 import 'package:floward_weather/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:floward_weather/features/profile/presentation/bloc/profile_event.dart';
 import 'package:floward_weather/features/weather/presentation/bloc/weather_event.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -26,37 +22,6 @@ void main() async {
   // Load environment variables based on flavor
   await dotenv.load(
       fileName: "assets/env/.env.${FlavorConfig.instance.flavor.name}");
-
-  // Initialize DioHelper
-  DioHelper.init();
-
-  // Test method channel
-  try {
-    const profileChannel = MethodChannel('com.floward.weather/profile');
-    final result = await profileChannel.invokeMethod<dynamic>('getProfileData');
-    developer
-        .log('Test method channel result: $result (${result.runtimeType})');
-
-    if (result is Map) {
-      final map = Map<String, dynamic>.from(result);
-      developer.log('Test method channel result as map: $map');
-
-      // Check expected keys
-      final expectedKeys = [
-        'name',
-        'email',
-        'location',
-        'member_since',
-        'avatar_url'
-      ];
-      for (final key in expectedKeys) {
-        developer.log(
-            'Test method channel - key "$key": ${map.containsKey(key)}, value: ${map[key]}');
-      }
-    }
-  } catch (e) {
-    developer.log('Test method channel error: $e', error: e);
-  }
 
   await di.init();
   FlavorConfig.instance.flavor = Flavor.dev; // Set the initial flavor

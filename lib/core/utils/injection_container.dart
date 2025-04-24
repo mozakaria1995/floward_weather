@@ -1,4 +1,6 @@
 import 'package:floward_weather/core/network/bloc/connectivity/connectivity_bloc.dart';
+import 'package:floward_weather/core/network/dio_helper.dart';
+import 'package:floward_weather/core/network/dio_helper_impl.dart';
 import 'package:floward_weather/core/network/network_info.dart';
 import 'package:floward_weather/features/profile/data/datasources/profile_datasource.dart';
 import 'package:floward_weather/features/profile/data/datasources/profile_datasource_impl.dart';
@@ -62,4 +64,5 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton<DioHelper>(() => DioHelperImpl());
 }
