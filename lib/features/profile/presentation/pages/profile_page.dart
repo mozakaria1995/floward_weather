@@ -40,8 +40,8 @@ class ProfilePage extends StatelessWidget {
                 return SingleChildScrollView(
                   child: Column(
                     children: [
-                      _buildProfileHeader(
-                          state.profile.name, state.profile.avatarUrl),
+                      _buildProfileHeader(state.profile.name,
+                          state.profile.avatarUrl, state.profile.os),
                       const SizedBox(height: 30),
                       _buildInfoSection(
                         state.profile.location,
@@ -87,7 +87,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileHeader(String name, String avatarUrl) {
+  Widget _buildProfileHeader(String name, String avatarUrl, String os) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -127,6 +127,13 @@ class ProfilePage extends StatelessWidget {
             style: const TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            os,
+            style: const TextStyle(
+              fontSize: 14,
               color: Colors.white,
             ),
           ),

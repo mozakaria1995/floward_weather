@@ -1,19 +1,29 @@
-import 'package:floward_weather/features/profile/data/datasources/profile_datasource.dart';
 import 'package:floward_weather/features/profile/data/models/profile_model.dart';
+import 'package:flutter/services.dart';
+
+import 'profile_datasource.dart';
 
 class ProfileDataSourceImpl implements ProfileDataSource {
+  final MethodChannel _channel;
+
+  ProfileDataSourceImpl({MethodChannel? channel})
+      : _channel =
+            channel ?? const MethodChannel('com.floward.weather/profile');
+
   @override
   Future<ProfileModel> getProfile() async {
-    // Simulating network delay
-    await Future.delayed(const Duration(milliseconds: 800));
+    try {
+      final Map<String, dynamic> userData =
+          await _channel.invokeMapMethod<String, dynamic>('getProfileData') ??
+              {};
 
-    // Return mock profile data
-    return const ProfileModel(
-      name: 'Mohamed Zakaria',
-      email: 'mo.zakaria95@gmail.com',
-      location: 'Cairo, Egypt',
-      memberSince: 'January 2023',
-      avatarUrl: 'https://randomuser.me/api/portraits/men/1.jpg',
-    );
+      return ProfileModel.fromJson(userData);
+    } on PlatformException catch (e) {
+      throw PlatformException(
+        code: 'profile_error',
+        message: 'Failed to get profile data',
+        details: e.toString(),
+      );
+    }
   }
 }

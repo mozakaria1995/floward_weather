@@ -7,12 +7,14 @@ class ProfileModel extends Profile {
     required String location,
     required String memberSince,
     required String avatarUrl,
+    required String os,
   }) : super(
           name: name,
           email: email,
           location: location,
           memberSince: memberSince,
           avatarUrl: avatarUrl,
+          os: os,
         );
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class ProfileModel extends Profile {
       location: json['location'],
       memberSince: json['member_since'],
       avatarUrl: json['avatar_url'],
+      os: json['os'],
     );
   }
 
@@ -32,6 +35,7 @@ class ProfileModel extends Profile {
       'location': location,
       'member_since': memberSince,
       'avatar_url': avatarUrl,
+      'os': os,
     };
   }
 }

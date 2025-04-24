@@ -6,6 +6,7 @@ class Profile extends Equatable {
   final String location;
   final String memberSince;
   final String avatarUrl;
+  final String os;
 
   const Profile({
     required this.name,
@@ -13,6 +14,7 @@ class Profile extends Equatable {
     required this.location,
     required this.memberSince,
     required this.avatarUrl,
+    required this.os,
   });
 
   @override
@@ -22,5 +24,6 @@ class Profile extends Equatable {
         location,
         memberSince,
         avatarUrl,
+        os,
       ];
 }
