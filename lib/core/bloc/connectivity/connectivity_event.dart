@@ -17,3 +17,5 @@ class ConnectivityStatusChanged extends ConnectivityEvent {
 }
 
 class CheckConnectivity extends ConnectivityEvent {}
+
+class ConnectivityRestored extends ConnectivityEvent {}

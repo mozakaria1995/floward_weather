@@ -10,17 +10,26 @@ import 'connectivity_state.dart';
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   final NetworkInfo networkInfo;
   late StreamSubscription<InternetConnectionStatus> _connectionSubscription;
+  bool _wasConnected = true;
 
   ConnectivityBloc({required this.networkInfo})
       : super(const ConnectivityInitial()) {
     on<ConnectivityStatusChanged>(_onConnectivityStatusChanged);
     on<CheckConnectivity>(_onCheckConnectivity);
+    on<ConnectivityRestored>(_onConnectivityRestored);
 
     // Listen to connection changes
     _connectionSubscription = InternetConnectionChecker().onStatusChange.listen(
       (status) {
-        add(ConnectivityStatusChanged(
-            status == InternetConnectionStatus.connected));
+        final isConnected = status == InternetConnectionStatus.connected;
+
+        // If connection was restored (was disconnected, now connected)
+        if (!_wasConnected && isConnected) {
+          add(ConnectivityRestored());
+        }
+
+        _wasConnected = isConnected;
+        add(ConnectivityStatusChanged(isConnected));
       },
     );
   }
@@ -37,7 +46,16 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
     Emitter<ConnectivityState> emit,
   ) async {
     final isConnected = await networkInfo.isConnected;
+    _wasConnected = isConnected;
     emit(ConnectivitySuccess(isConnected));
+  }
+
+  void _onConnectivityRestored(
+    ConnectivityRestored event,
+    Emitter<ConnectivityState> emit,
+  ) {
+    // This event doesn't change the state but will be listened to
+    // by other parts of the app to refresh data
   }
 
   @override

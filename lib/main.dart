@@ -3,6 +3,7 @@ import 'dart:developer' as developer;
 import 'package:floward_weather/config/flavor_config.dart';
 import 'package:floward_weather/core/bloc/connectivity/connectivity_bloc.dart';
 import 'package:floward_weather/core/bloc/connectivity/connectivity_event.dart';
+import 'package:floward_weather/core/connectivity/connectivity_manager.dart';
 import 'package:floward_weather/core/network/dio_helper.dart';
 import 'package:floward_weather/core/utils/theme.dart';
 import 'package:floward_weather/features/profile/presentation/bloc/profile_bloc.dart';
@@ -62,8 +63,21 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ConnectivityManager? _connectivityManager;
+
+  @override
+  void dispose() {
+    _connectivityManager?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +97,20 @@ class MyApp extends StatelessWidget {
               di.sl<ConnectivityBloc>()..add(CheckConnectivity()),
         ),
       ],
-      child: MaterialApp(
-        title: 'Floward Weather',
-        theme: AppTheme.themeData,
-        home: const MainPage(),
-      ),
+      child: Builder(builder: (context) {
+        // Initialize the ConnectivityManager with the BLoCs from context
+        _connectivityManager ??= ConnectivityManager(
+          connectivityBloc: context.read<ConnectivityBloc>(),
+          weatherBloc: context.read<WeatherBloc>(),
+          profileBloc: context.read<ProfileBloc>(),
+        );
+
+        return MaterialApp(
+          title: 'Floward Weather',
+          theme: AppTheme.themeData,
+          home: const MainPage(),
+        );
+      }),
     );
   }
 }
