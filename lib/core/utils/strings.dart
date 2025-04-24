@@ -32,4 +32,13 @@ class AppStrings {
   // Connectivity
   static const String noInternetConnection = 'No internet connection';
   static const String retry = 'RETRY';
+
+  // Feedback
+  static const String submitFeedback = 'Submit Feedback';
+  static const String feedback = 'Feedback';
+  static const String feedbackHint = 'Tell us about your experience...';
+  static const String feedbackTitle = 'How are we doing?';
+  static const String send = 'SEND';
+  static const String cancel = 'CANCEL';
+  static const String thankYouFeedback = 'Thank you for your feedback!';
 }

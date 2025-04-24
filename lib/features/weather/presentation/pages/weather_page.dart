@@ -3,6 +3,7 @@ import 'package:floward_weather/core/utils/styles.dart';
 import 'package:floward_weather/core/utils/theme.dart';
 import 'package:floward_weather/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:floward_weather/features/weather/presentation/bloc/weather_state.dart';
+import 'package:floward_weather/features/weather/presentation/widgets/feedback_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -50,7 +51,28 @@ class WeatherPage extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => _showFeedbackDialog(context),
+        backgroundColor: AppTheme.primaryDark,
+        foregroundColor: Colors.white,
+        icon: const Icon(Icons.feedback_outlined),
+        label: const Text(AppStrings.submitFeedback),
+      ),
     );
+  }
+
+  void _showFeedbackDialog(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (dialogContext) => FeedbackDialog(
+        controller: controller,
+      ),
+    ).then((_) {
+      controller.dispose();
+    });
   }
 }
 
@@ -78,16 +100,19 @@ class WeatherContent extends StatelessWidget {
           ),
         ),
         child: SafeArea(
-          child: Column(
-            children: [
-              _buildHeader(),
-              const SizedBox(height: AppStyles.extraLargeSpace),
-              _buildWeatherInfo(),
-              const SizedBox(height: AppStyles.extraLargeSpace),
-              _buildTemperature(),
-              const SizedBox(height: AppStyles.extraLargeSpace),
-              _buildExtraInfo(),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 80),
+            child: Column(
+              children: [
+                _buildHeader(),
+                const SizedBox(height: AppStyles.extraLargeSpace),
+                _buildWeatherInfo(),
+                const SizedBox(height: AppStyles.extraLargeSpace),
+                _buildTemperature(),
+                const SizedBox(height: AppStyles.extraLargeSpace),
+                _buildExtraInfo(),
+              ],
+            ),
           ),
         ),
       ),

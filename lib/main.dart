@@ -1,9 +1,9 @@
 import 'dart:developer' as developer;
 
 import 'package:floward_weather/config/flavor_config.dart';
-import 'package:floward_weather/core/bloc/connectivity/connectivity_bloc.dart';
-import 'package:floward_weather/core/bloc/connectivity/connectivity_event.dart';
-import 'package:floward_weather/core/connectivity/connectivity_manager.dart';
+import 'package:floward_weather/core/network/bloc/connectivity/connectivity_bloc.dart';
+import 'package:floward_weather/core/network/bloc/connectivity/connectivity_event.dart';
+import 'package:floward_weather/core/network/connectivity_manager.dart';
 import 'package:floward_weather/core/network/dio_helper.dart';
 import 'package:floward_weather/core/utils/theme.dart';
 import 'package:floward_weather/features/profile/presentation/bloc/profile_bloc.dart';

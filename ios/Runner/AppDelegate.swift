@@ -9,8 +9,9 @@ import UIKit
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
     
-    // Set up method channel for profile feature
     let controller = window?.rootViewController as! FlutterViewController
+    
+    // Set up method channel for profile feature
     let profileChannel = FlutterMethodChannel(name: "com.floward.weather/profile", 
                                              binaryMessenger: controller.binaryMessenger)
     
@@ -31,6 +32,36 @@ import UIKit
         
         // Send the result
         result(profileData)
+      } else {
+        result(FlutterMethodNotImplemented)
+      }
+    }
+    
+    // Set up method channel for feedback feature
+    let feedbackChannel = FlutterMethodChannel(name: "com.floward.weather/feedback", 
+                                             binaryMessenger: controller.binaryMessenger)
+    
+    feedbackChannel.setMethodCallHandler { [weak self] (call, result) in
+      if call.method == "submitFeedback" {
+        guard let args = call.arguments as? [String: Any],
+              let feedback = args["feedback"] as? String else {
+          result(FlutterError(code: "INVALID_ARGUMENTS", 
+                              message: "Missing feedback data", 
+                              details: nil))
+          return
+        }
+        
+        // Log received feedback
+        NSLog("Received feedback from Flutter: \(feedback)")
+        
+        // In a real app, you would process the feedback here
+        // For example, save it to a local database or send it to a server
+        
+        // Simulate processing delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+          // Return success
+          result(true)
+        }
       } else {
         result(FlutterMethodNotImplemented)
       }

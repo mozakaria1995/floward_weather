@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:floward_weather/core/bloc/connectivity/connectivity_bloc.dart';
-import 'package:floward_weather/core/bloc/connectivity/connectivity_state.dart';
+import 'package:floward_weather/core/network/bloc/connectivity/connectivity_bloc.dart';
+import 'package:floward_weather/core/network/bloc/connectivity/connectivity_state.dart';
 import 'package:floward_weather/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:floward_weather/features/profile/presentation/bloc/profile_event.dart';
 import 'package:floward_weather/features/weather/presentation/bloc/weather_bloc.dart';

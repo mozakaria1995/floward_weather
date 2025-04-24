@@ -1,6 +1,6 @@
-import 'package:floward_weather/core/bloc/connectivity/connectivity_bloc.dart';
-import 'package:floward_weather/core/bloc/connectivity/connectivity_event.dart';
-import 'package:floward_weather/core/bloc/connectivity/connectivity_state.dart';
+import 'package:floward_weather/core/network/bloc/connectivity/connectivity_bloc.dart';
+import 'package:floward_weather/core/network/bloc/connectivity/connectivity_event.dart';
+import 'package:floward_weather/core/network/bloc/connectivity/connectivity_state.dart';
 import 'package:floward_weather/core/utils/strings.dart';
 import 'package:floward_weather/core/widgets/connectivity_banner.dart';
 import 'package:floward_weather/features/profile/presentation/pages/profile_page.dart';
