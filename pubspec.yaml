@@ -43,7 +43,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   flutter_flavorizr: ^2.1.0
   mockito: ^5.4.6
-  bloc_test: ^9.1.6
+  bloc_test: ^9.1.7
 
 flutter:
   uses-material-design: true

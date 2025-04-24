@@ -29,7 +29,6 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
         throw Exception('Failed to load weather data');
       }
     } catch (e) {
-      print(e.toString());
       throw Exception('Failed to load weather data');
     }
   }
