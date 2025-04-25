@@ -14,9 +14,13 @@ The project follows **clean architecture** principles with the following structu
 ```
 lib/
 ├── core/
-│   ├── bloc/
-│   │   └── connectivity/        # Connectivity bloc for network monitoring
-│   ├── network/                 # Network information interface
+│   ├── network/                 # Network infrastructure
+│   │   ├── bloc/                # Network state management
+│   │   │   └── connectivity/    # Connectivity monitoring bloc
+│   │   ├── dio_helper.dart      # API client interface
+│   │   ├── dio_helper_impl.dart # API client implementation
+│   │   ├── network_info.dart    # Network status interface
+│   │   └── connectivity_manager.dart # Manages connectivity events
 │   ├── error/                   # Error handling (failures)
 │   ├── widgets/                 # Shared UI components
 │   └── utils/                   # Common utilities and constants
@@ -35,7 +39,7 @@ lib/
 │   │       ├── pages/           # UI pages
 │   │       └── widgets/         # Reusable UI components
 │   ├── main/                    # Main app navigation
-│   └── profile/                 # User profile (if implemented)
+│   └── profile/                 # User profile 
 └── main.dart                    # Application entry point
 ```
 
