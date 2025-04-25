@@ -17,14 +17,19 @@ import UIKit
     
     profileChannel.setMethodCallHandler { [weak self] (call, result) in
       if call.method == "getProfileData" {
-        // Return mock profile data
+        // Get actual device information
+        let deviceName = UIDevice.current.name
+        let systemName = UIDevice.current.systemName
+        
+        // Return profile data with actual device info
         let profileData: [String: Any] = [
           "name": "Mohamed Zakaria",
           "email": "mo.zakaria95@gmail.com",
           "location": "Cairo, Egypt",
           "member_since": "January 2023",
           "avatar_url": "https://randomuser.me/api/portraits/men/32.jpg",
-          "os": "iOS"
+          "os": systemName,
+          "device_info": deviceName,
         ]
         
         // Log profile data before sending

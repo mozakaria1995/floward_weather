@@ -7,6 +7,7 @@ import java.util.HashMap
 import android.util.Log
 import android.os.Handler
 import android.os.Looper
+import android.os.Build
 
 class MainActivity : FlutterActivity() {
     private val PROFILE_CHANNEL = "com.floward.weather/profile"
@@ -20,15 +21,20 @@ class MainActivity : FlutterActivity() {
             when (call.method) {
                 "getProfileData" -> {
                     try {
+                        // Get actual device information
+                        val model = Build.MODEL
+                        
                         val profileData = HashMap<String, Any>().apply {
                             put("name", "Mohamed Zakaria")
                             put("email", "mo.zakaria95@gmail.com")
-                            put("location", "Cairo , Egypt")
+                            put("location", "Cairo, Egypt")
                             put("member_since", "January 2023")
-                            put("os", "Android")
                             put("avatar_url", "https://randomuser.me/api/portraits/men/32.jpg")
+                            put("os", "Android")
+                            put("device_info", model)
                         }
                         
+                        Log.d(TAG, "Sending profile data: $profileData")
                         result.success(profileData)
                     } catch (e: Exception) {
                         result.error("PROFILE_ERROR", "Failed to get profile data", e.toString())

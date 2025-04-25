@@ -8,6 +8,7 @@ class ProfileModel extends Profile {
     required String memberSince,
     required String avatarUrl,
     required String os,
+    required String deviceInfo,
   }) : super(
           name: name,
           email: email,
@@ -15,6 +16,7 @@ class ProfileModel extends Profile {
           memberSince: memberSince,
           avatarUrl: avatarUrl,
           os: os,
+          deviceInfo: deviceInfo,
         );
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class ProfileModel extends Profile {
       memberSince: json['member_since'],
       avatarUrl: json['avatar_url'],
       os: json['os'],
+      deviceInfo: json['device_info'],
     );
   }
 

@@ -40,8 +40,11 @@ class ProfilePage extends StatelessWidget {
                 return SingleChildScrollView(
                   child: Column(
                     children: [
-                      _buildProfileHeader(state.profile.name,
-                          state.profile.avatarUrl, state.profile.os),
+                      _buildProfileHeader(
+                          state.profile.name,
+                          state.profile.avatarUrl,
+                          state.profile.os,
+                          state.profile.deviceInfo),
                       const SizedBox(height: 30),
                       _buildInfoSection(
                         state.profile.location,
@@ -87,7 +90,8 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileHeader(String name, String avatarUrl, String os) {
+  Widget _buildProfileHeader(
+      String name, String avatarUrl, String os, String deviceInfo) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -131,7 +135,7 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           Text(
-            os,
+            '$os - $deviceInfo',
             style: const TextStyle(
               fontSize: 14,
               color: Colors.white,
